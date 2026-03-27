@@ -1,0 +1,44 @@
+# The Dark City
+
+### Brief
+
+Design and develop a small interactive game or 3D model. 
+
+### Goal 
+
+Create a small  3D model that can be placed an used in unity.this includes animation and 3D modelling.
+
+### Role in Project
+
+Designer and Creator
+
+### Software 
+
+- Blender
+- Unity 
+
+## Introduction
+
+The Dark City is a small 3D model, which shows basic skills of blender to create a small city street as well as basic skills of unity to create a basic dynamic scene with lighting and animation to give the impression of horror themed scene.
+
+This project is themed to be a small Horror scene which could be used to advertise a game or as a basic cutscene in a game. It will show my basic understanding of some key areas of game design that all us to create immersive and entertaining scenes in games and animations. 
+
+## Inspiration
+
+Due to this Assignment being given in October i have decided to draw upon the spooky season and create a more horror styled project drawing on game like the backrooms and some roblox horror games. 
+
+I also took inspiration from the real world using areas like inner city housing for the location of the scene. 
+
+### Design Inspiration 
+
+For the model design i decided to follow the Roblox route of using basic materials with some texturing allowing to add some details to the houses and scene as well as for the monster allowing for a simple look but with the right lighting could be very scary.
+
+For the monster design i am taking inspiartion from a new mon added to minecraft recently called the creaking as well as the kishin from roblox game Kishin. These two creatures are made to be tall slim with three eyes and give you the sense of eerie without doing moving.
+
+### Creature Creation
+
+My Design uses elements from both design inspirarions talked about previously as can be seen. Eventhough this is just a simple sketch, this will be what i follow into creating the creature, this asset will have three horizontal eyes with a full teeth grin adding to the eerie feeling the scene will create, for colour ill be using a dark colours a mixure of black, red annd brown to do the body and eye, whikst using a white colour for thye teeth of the creature. 
+
+## 3D Modelling
+
+### Blender
