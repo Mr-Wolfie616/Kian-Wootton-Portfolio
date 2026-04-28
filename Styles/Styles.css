@@ -226,10 +226,10 @@ span{
 
 @keyframes words{
     0%, 50%{
-        content: "Winchester Student";
+        content: "Producer";
     }
     51%, 100%{
-        content: "Immersive Technology Student";
+        content: "Developer";
     }
 }
 
