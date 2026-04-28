@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kian Wootton | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Styles/first.css">
+</head>
+
+<body>
+
+<nav>
+<h2>Hollow Wolf</h2>
+<ul>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<section class="hero">
+<div class="hero-bg" id="parallax"></div>
+<div class="hero-content">
+<h1>Kian <span>Wootton</span></h1>
+<p>Solo indie developer crafting dark fantasy games shaped by folklore, isolation, and atmosphere.</p>
+</div>
+</section>
+
+<section id="projects">
+<h2 class="section-title">Projects</h2>
+<p class="section-desc">Selected work and ongoing development.</p>
+
+<div class="grid">
+<a href="Time_Heist.html" class="card"><img src="Images/Time_Hiest/logo.png"><div class="card-content"><small>UNITY VR GAME</small><h3>Time Heist</h3><p>Sample Text</p></div></a>
+<a href="Time_Heist.html" class="card"><img src="Images/Time_Hiest/logo.png"><div class="card-content"><small>FAST PACE HORROR</small><h3>Quebec Underground</h3><p>High intensity horror experience currently in development for a University Project.</p></div></a>
+<a href="Time_Heist.html" class="card"><img src="Images/Time_Hiest/logo.png"><div class="card-content"><small>EXPERIMENT</small><h3>Game Systems</h3><p>Exploration of mechanics, mood design, and interactive storytelling.</p></div></a>
+</div>
+</section>
+
+<section id="about">
+<div class="about">
+<div>
+<h2 class="section-title">About</h2>
+<p>Hollow Wolf is a solo indie game developer focused on building immersive dark fantasy worlds. Projects prioritize atmosphere, emotional tone, and meaningful player interaction.</p>
+<br>
+<p>Development combines technical experimentation with artistic direction, exploring folklore, wilderness themes, and mystery.</p>
+</div>
+
+<div>
+<div class="panel"><strong>Philosophy</strong><p>Atmosphere first. Gameplay with purpose.</p></div>
+<div class="panel"><strong>Workflow</strong><p>Solo development with iterative design.</p></div>
+<div class="panel"><strong>Focus</strong><p>Indie games with identity and mood.</p></div>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<h2 class="section-title">Skills</h2>
+<div class="skills">
+<span>Unity</span>
+<span>C#</span>
+<span>Game Design</span>
+<span>UI Systems</span>
+<span>Gameplay Programming</span>
+<span>Worldbuilding</span>
+<span>Level Design</span>
+<span>Prototyping</span>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact</h2>
+<p class="section-desc">Follow development or get in touch.</p>
+<p>Email: HollowWolfStudio@outlook.com</p>
+<p>YouTube: @HollowWolf-26</p>
+</section>
+
+<footer>
+© 2026 Hollow Wolf — Solo Indie Developer Portfolio
+</footer>
+
+<script>
+const heroBg=document.getElementById('parallax');
+window.addEventListener('scroll',()=>{
+ const offset=window.scrollY*0.25;
+ heroBg.style.transform=`translateY(${offset}px) scale(1.15)`;
+});
+</script>
+
+</body>
+</html>
