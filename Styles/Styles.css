@@ -34,7 +34,7 @@ header{
     z-index: 100;
 }
 
-.Logo2{
+.Header_image{
     display: flex;
     justify-content: left;
     align-items: center;
@@ -57,7 +57,7 @@ header{
     transition: 0.2s linear;
 }
 
-.logo{
+.Header_name{
     font-size: 3rem;
     color: #eba537;
     font-weight: 800;
