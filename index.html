@@ -1,42 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="stylesheet" href="Styles/Styles.css">
-        <title>Kian Wootton Portfolio</title>
-    </head>
-    <body>
-        <header>
-            <div class="Header_image">
-                <img class="image" src="Images/Logo/HollowWolf_Logo.png" alt="">
-                <a href=# class="Header_name">Kian Wootton</a>
-            </div>
-            <nav>
-                <a href="index.html" class="active"> Home</a>
-                <a href="About.html" >About</a>
-                <a href="Projects.html" >Projects</a>
-                <a href="Academic Work.html">Academic Works</a>
-                <a href="#" >Contact</a>
-            </nav>
-        </header>
-        <section class="home">
-            <div class="home-img">
-                <img src="Images/Logo/HollowWolf_Logo.png" alt="">
-            </div>
-            <div class="home-content">
-                <h1>Hi, I'm <span>Kian</span></h1>
-                <h3 class="typing-text">I'm a <span></span></h3>
-                <p>
-                </p>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/kian-wootton-b7330b1b3"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/Mr-Wolfie616"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.youtube.com/@HollowWolf-26"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </div>
-        </section>
-    </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kian Wootton | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Styles/Home.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="Header_image">
+        <img class="logo" src="Images/Logo/HollowWolf_Logo.png" alt="Hollow Wolf">
+        <span class="Header_name">Kian Wootton</span>
+    </div>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+</header>
+
+<section class="hero">
+<div class="hero-bg" id="parallax"></div>
+<div class="hero-content">
+<h1>Kian <span>Wootton</span></h1>
+<p>Solo indie developer crafting dark fantasy games shaped by folklore, isolation, and atmosphere.</p>
+</div>
+</section>
+
+<section id="projects">
+<h2 class="section-title">Projects</h2>
+<p class="section-desc">Selected work and ongoing development.</p>
+
+<div class="grid">
+<a href="Time_Heist.html" class="card"><img src="Images/Time_Hiest/logo.png"><div class="card-content"><small>UNITY VR GAME</small><h3>Time Heist</h3><p>Sample Text</p></div></a>
+<a href="Quebec_UnderGround.html" class="card"><img src="Images/quebec_underground_logo.png"><div class="card-content"><small>FAST PACE HORROR</small><h3>Quebec Underground</h3><p>High intensity horror experience currently in development for a University Project.</p></div></a>
+<a href="Time_Heist.html" class="card"><img src="Images/Time_Hiest/logo.png"><div class="card-content"><small>EXPERIMENT</small><h3>Game Systems</h3><p>Exploration of mechanics, mood design, and interactive storytelling.</p></div></a>
+</div>
+</section>
+
+<section id="about">
+<div class="about">
+<div>
+<h2 class="section-title">About</h2>
+<p>Hollow Wolf is a solo indie game developer focused on building immersive dark fantasy worlds. Projects prioritize atmosphere, emotional tone, and meaningful player interaction.</p>
+<br>
+<p>Development combines technical experimentation with artistic direction, exploring folklore, wilderness themes, and mystery.</p>
+</div>
+
+<div>
+<div class="panel"><strong>Philosophy</strong><p>Atmosphere first. Gameplay with purpose.</p></div>
+<div class="panel"><strong>Workflow</strong><p>Solo development with iterative design.</p></div>
+<div class="panel"><strong>Focus</strong><p>Indie games with identity and mood.</p></div>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<h2 class="section-title">Skills</h2>
+<div class="skills">
+<span>Unity</span>
+<span>C#</span>
+<span>Game Design</span>
+<span>UI Systems</span>
+<span>Gameplay Programming</span>
+<span>Worldbuilding</span>
+<span>Level Design</span>
+<span>Prototyping</span>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact</h2>
+<p class="section-desc">Follow development or get in touch.</p>
+<p>Email: HollowWolfStudio@outlook.com</p>
+<p>YouTube: @HollowWolf-26</p>
+</section>
+
+<footer>
+© 2026 Hollow Wolf — Solo Indie Developer Portfolio
+</footer>
+
+<script>
+const heroBg=document.getElementById('parallax');
+window.addEventListener('scroll',()=>{
+ const offset=window.scrollY*0.25;
+ heroBg.style.transform=`translateY(${offset}px) scale(1.15)`;
+});
+</script>
+
+</body>
 </html>
