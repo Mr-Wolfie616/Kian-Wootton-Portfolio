@@ -31,6 +31,256 @@
             <p>Coming Soon</p>
         </div>
     <section>
-        
-    </section>
+        <h1><span>Game Overview</span></h1>
+<p><strong><span>Genre: </span></strong><span>Fast-Paced Survival Horror</span></p>
+<p><strong><span>Platform: </span></strong><span>PC</span></p>
+<p><strong><span>Perspective: </span></strong><span>First Person gameplay</span></p>
+<p><strong><span>Core Pillar: </span></strong><span>Evasion instead of Confrontation</span></p>
+<p><strong><span>Playtime Target: </span></strong><span>5-15 minute prototype experience</span></p>
+<p><span>Quebec Underground is a fast-paced horror prototype focused on survival by awareness, movement and decision-making rather than combat. The player explores an abandoned train station while being hunted by an unkillable creature that moves faster than the player.</span></p>
+<p><span>The game is created around tension by pursuit. The creature cannot be defeated, only avoided through outmanoeuvring or temporarily escaping. To survive, the player must remember the environment, manage their noise and use hiding spots.</span></p>
+<p><span>Gameplay takes place in a single connected level designed around loops, corridors and line-of-sight breaks that allow players to escape the creature despite its speed advantage. Environmental interactions such as doors, puzzles, and navigational choices become the player&rsquo;s main ways to survive.</span></p>
+<p><span>The creature operates using semi-unpredictable behaviour. While players can learn its general rules and responses, they cannot fully predict its actions. This helps fear and replayability while making sure encounters remain fair and readable.</span></p>
+<p><span>The desired experience is one of constant pressure. Players should always feel hunted, briefly safe, but never secure. Progress comes from learning the space and improving decision making rather than gaining power or upgrades.</span></p>
+<p><span>The project is scoped as a focused, polished prototype designed to explore how high-intensity horror gameplay can remain balanced, readable and enjoyable when the threat is faster, constant and impossible to kill. The goal is to demonstrate strong core systems, clear design reasoning and iterative development rather than large amounts of content.</span></p>
+<p><span>&nbsp;</span></p>
+<h2 id="_Toc228264463"><span>Game Concept</span></h2>
+<p><span>Quebec Underground is a high intensity horror experience where the player explores an abandoned underground train station while being hunted by an unkillable creature which is faster than the player. Survival depends on awareness, movement decisions and environmental navigation rather than combat.</span></p>
+<p><span>The player cannot defeat the monster. Progress comes from learning the level layout, understanding puzzles and escaping.</span></p>
+<p><span>&nbsp;</span></p>
+<h1 id="_Toc228264464"><span>Project Purpose</span></h1>
+<p><span>This prototype explores how a faster than player enemy can remain fair, readable and enjoyable through design decisions.</span></p>
+<p><span>The project aims to demonstrate the following:</span></p>
+<ul>
+    <li><span>Balanced enemy AI behaviour.</span></li>
+    <li><span>Fear without frustration.</span></li>
+    <li><span>Escape focused gameplay.</span></li>
+    <li><span>Level design as a gameplay system.</span></li>
+    <li><span>Iterative testing and refinement.</span></li>
+</ul>
+<p><strong><span>Target Player Experience</span></strong></p>
+<p><span>Players should feel:</span></p>
+<ul>
+    <li><span>Constantly hunted.</span></li>
+    <li><span>Briefly safe but never fully secure.</span></li>
+    <li><span>Intelligent when escaping rather than powerful.</span></li>
+    <li><span>Under pressure but never helpless.</span></li>
+</ul>
+<p><span>Fear comes from decision making under stress, not surprise attacks.</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>&nbsp;</span></p>
+<h1 id="_Toc228264465"><span>Core Gameplay Loop</span></h1>
+<ul>
+    <li><span>Players explore tunnels and platforms for clues and puzzles.</span></li>
+    <li><span>Noise risks attracting the creature</span></li>
+    <li><span>The creature enters the investigation or chase state.</span></li>
+    <li><span>Player escapes using hiding, environment knowledge and distractions.</span></li>
+    <li><span>Temporary safe rooms allow progression.</span></li>
+    <li><span>Different areas needed to be found in the large map, increasing tension and navigation complexity.</span></li>
+</ul>
+<p><span>The loop repeats with increasing player knowledge rather than increased player power, which helps players to develop strategies and adapt their gameplay to overcome challenges in the environment.</span></p>
+<p><span>&nbsp;</span></p>
+<h1 id="_Toc228264466"><span>Core Systems</span></h1>
+<h2 id="_Toc228264467"><span>Creature AI System</span></h2>
+<p><span>The creature is our primary gameplay system due to the creature needing to feel unbeatable but predictable enough for the player to learn.</span></p>
+<h3 id="_Toc228264468"><span>Movement</span></h3>
+<p><span>The creature moves significantly faster than the players&apos; sprint speed, with direct confrontation leading to player failure.</span></p>
+<h3 id="_Toc228264469"><span>AI Behaviour States</span></h3>
+<p><span>Key Methods:</span></p>
+<div>
+    <ul>
+        <li><em><span>RaycastFindPlayer(float dist, bool throughWalls);&nbsp;</span></em></li>
+    </ul>
+</div>
+<p><span>Checks whether the NPC can detect the player within a given range - ignoring hidden players, optionally detecting through walls, and making crouching players harder to notice.</span></p>
+<div>
+    <ul>
+        <li><em><span>HearAudio(Vector3 pos, AudioDataSO data);&nbsp;</span></em></li>
+    </ul>
+</div>
+<p><span>Processes incoming sound stimuli by checking range, updating the NPC&rsquo;s current investigation target based on priority or proximity, and triggering the Investigate state if needed.</span></p>
+<p><span>&nbsp;</span></p>
+<p><strong><span>Idle</span></strong><span>&nbsp;&ndash; Enemy remains still, checks for player on a fixed interval with a small radius.</span></p>
+<p><strong><span>Roam</span></strong><span>&nbsp;- The NPC wanders the NavMesh by choosing pseudo-random roam points, with increasing directional bias toward the player the farther away they are.</span></p>
+<p><span>If the player is hiding and nearby, it temporarily shifts into an avoidance pattern and moves away instead of approaching to encourage the usage of hiding spaces and reduce lingering around hiding players, which in testing had led to some frustration.</span></p>
+<p><span>While roaming, it periodically checks for the player to transition into Hunt and recovers by selecting a new path if it gets stuck.</span></p>
+<p><strong><span>Investigate</span></strong><span>&nbsp;- The NPC reacts to sound events within the sound&rsquo;s alert radius, storing the most relevant target based on priority and proximity, and immediately switches into an investigation state if not already investigating. (Hooked in with events invoked by our <em>AudioManager</em> system)</span></p>
+<p><span>In Investigate, it navigates toward the sound source and dynamically updates its destination if a new, higher-priority sound is heard, allowing it to redirect mid-search.</span></p>
+<p><span>Once it reaches the target, it pauses to search the area, evaluates the player&rsquo;s visibility and stealth state (hidden, crouching, exposed), and either escalates into a hunt or abandons the search and returns to idle or roaming.</span></p>
+<p><strong><span>Hunt</span></strong><span>&nbsp;- The NPC enters Hunt when it has confirmed the player&rsquo;s presence, increasing movement speed and pathing directly to the player&rsquo;s last known position while playing alert audio cues.</span></p>
+<p><span>During the hunt, it periodically checks if it can still detect the player; if successful, it refreshes the chase target and resets its &ldquo;lost target&rdquo; timer to maintain pursuit.</span></p>
+<p><span>If the player remains undetected for a set duration, the NPC assumes they have escaped, abandons the chase, and transitions back into its roaming behaviour.</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>&nbsp;</span></p>
+<h2 id="_Toc228264470"><span>Player Mechanics</span></h2>
+<p><span>Player abilities are intentionally limited in what they can do.</span></p>
+<h3 id="_Toc228264471"><span>Movement</span></h3>
+<p><span>Player movement is made using Unity&apos;s new input system allowing us to add access for consoles as well as PC players. The movement itself is broken down into four modes: walking, sprinting, backpedalling and crouch walking.</span></p>
+<ol>
+    <li><strong><span>Walk&nbsp;</span></strong><span>&ndash; The player moves at a set speed in all directions except when walking backwards.</span></li>
+    <li><strong><span>Backpedalling&nbsp;</span></strong><span>&ndash; players&apos; movement is 33% slower when moving backwards, making the player commit to their decisions when picking where to go in the map as well as adding some realism to the movement.</span></li>
+    <li><strong><span>Sprint&nbsp;</span></strong><span>&ndash; players&apos; movement is 66% faster when sprinting.</span></li>
+    <li><strong><span>Crouch Walk&nbsp;</span></strong><span>&ndash; players&apos; movement is also 33% slower when crouched whilst also lowering the visibility to the creatures&apos; AI system.</span></li>
+    <li><strong><span>Audio&nbsp;</span></strong><span>&ndash; the player will be able to hear their own footsteps through all movement; however, the creature will not be using these to find the player.</span></li>
+</ol>
+<h3 id="_Toc228264472"><span>Hiding System</span></h3>
+<p><span>Players can hide using two different methods. The first is service holes, which can be found inside tunnels throughout the stations, allowing the player to hide completely from the creature. These holes are just big enough for the player to hide in, allowing us to create tension when the creature passes by, as there is no cover to the front of these holes. These are created using colliders and the&nbsp;<em>OnTriggerEnter</em> method, allowing us to set the player&apos;s height, speed and if they are hidden.<br>&nbsp;The second method is using the three safe rooms around the map. These rooms need to be unlocked by completing a puzzle. Once unlocked, the player can continuously use these rooms to hide, and the creature is unable to enter these rooms. Hiding will break the visibility from the creature.</span></p>
+<h3 id="_Toc228264473"><span>Environmental Interactions</span></h3>
+<p><span>Environmental interactions are designed to create tension by making the player make decisions under pressure. Players must interact with the environment to progress and avoid the creature, but most interactions come with risk through noise, delay or reduced mobility.</span></p>
+<p><span>Doors:<strong>&nbsp;</strong>Doors have been made to be one way; this forces the player to commit to movement choices during chases as well as explore new areas of the map. These doors will also open at a fixed speed to prevent the player from instantly escaping the creature&rsquo;s range.</span></p>
+<p><span>Puzzles:<strong>&nbsp;</strong>most puzzles are set outside of safe rooms with no safety around; the player is not forced to stay at each puzzle until completion or failure. Each puzzle makes a low range amount of noise which can draw in the creature. If the player enters the wrong code, a loud alarm will be sounded throughout the map, allowing the creature to head straight for the alarm. This makes players plan escape rooms before interacting with the safe rooms but also allows the players to distract the creature in certain areas of the map. This allows us to continue creating tension without pausing the gameplay.</span></p>
+<p><span>&nbsp;</span></p>
+<h1 id="_Toc228264474"><span>Level Design Philosophy</span></h1>
+<p><span>The map is designed to have two kinds of play spaces:</span></p>
+<ol>
+    <li><span>The main area of the map is designed to be long and interconnected. Areas loop back into themselves and are full of generalised map elements.</span></li>
+    <li><span>The &lsquo;service tunnel&rsquo; areas are made with modular pieces of a smaller scale. This allows the areas to contain more detail within a smaller space than usual.</span></li>
+    <li><span>These areas are designed to be close-quarters forced encounters with the monster, full of evasion potentials such as loops and one-way exit doors out of the service tunnels.</span></li>
+    <li><span>The map is broken into these two areas to give the gameplay some ebb and flow; there are areas that are designed to be challenging, direct encounters, and there are areas that are supposed to allow for more exploration and the ability to use audio to locate the monster, allowing players to avoid it.</span></li>
+    <li><span>Most importantly, while the service tunnels are designed to feel tight, they most often feature multiple exits that allow you to navigate back and retry. These serve both as ways for players to leave and as entry points for the monster (since doors are not one-way for it).</span></li>
+</ol>
+<h1 id="_Toc228264475"><span>Fairness &amp; Balance Strategy</span></h1>
+<h2 id="_Toc228264476"><span>System Overview</span></h2>
+<p><span>The core challenge of this project is balancing a creature which is faster and unkillable whilst ensuring that the experience remains fair and enjoyable. The creature is intentionally not fully predictable, preventing players from reducing encounters to simple patterns or creating ideal strategies.</span></p>
+<p><span>Fairness is made through the player understanding the risks of certain actions. This should help players to feel unsafe and uncertain but not cheated out of a win.</span></p>
+<h2 id="_Toc228264477"><span>Design</span></h2>
+<p><span>The game balances fear and fairness through unpredictability. We do this by making the creature behave consistently enough to learn but never fully predictably; this means the player cannot control encounters but can influence outcomes instead. This means that our game works more on awareness, preparation and adaptation to certain scenarios. The uncertainty keeps tension in our game whilst learnable rules maintain fairness.</span></p>
+<h2 id="_Toc228264478"><span>Controlled Unpredictability</span></h2>
+<p><span>The NPC wanders the <em>NavMesh</em> by choosing pseudo-random roam points, with increasing directional bias toward the player the farther away they are. This allows for the creature&apos;s pathing to be randomised when roaming the scene; however, it also leans towards going towards the player based on distance from the player. This also means that the creature may occasionally recheck areas it has previously checked. This prevents the players from memorising safe solutions while maintaining believable behaviour.</span></p>
+<p><span>The creature&apos;s unpredictability is controlled to set rules as to not remove the player agency. The creature, for example, will not appear directly on top of the player, change its rules for player detection or be able to find hidden players for unknown reasons. This allows for the player to not be able to know what the creature will do; however, they will be able to understand why the monsters&rsquo; actions happen.</span></p>
+<h2 id="_Toc228264479"><span>Level Design as Balance</span></h2>
+<p><span>Due to the monster not being fully predictable, level design itself adds to the fairness of the game. This is created using multiple escape routes from the creature&rsquo;s hunt state. You are also able to break the creature&apos;s hunt state using the multiple lines of sight breaks, allowing you to recover from surprise encounters. We have also added certain areas with looped layouts that prevent unavoidable captures from the creature. This allows the environment to act as a defence for the player.</span></p>
+<h2 id="_Toc228264480"><span>Preventing Frustration</span></h2>
+<p><span>The uncertainty of the creature increases the tension for the player, but we have multiple fail-safes to maintain fairness and keep player frustration low. We have clear feedback from the creature depending on which state it is in. Death occurs because of risks taken by the player, not the randomness of the creature. This allows players to learn from their mistakes; however, players are also able to recover from mistakes if they react quickly. This should lead to players feeling outplayed by the creature, not unlucky with options.</span></p>
+<h2 id="_Toc228264481"><span>Playtesting Focus</span></h2>
+<p><span>The playtesting and iteration will mainly focus on the creature AI. How the map helps the player to survive and about the tension throughout the game. We will be doing this through playtest questions, which will allow us to evaluate the following:</span></p>
+<ul>
+    <li><span>Do players feel hunted rather than scripted against?</span></li>
+    <li><span>Does unpredictability increase tension without confusion?</span></li>
+    <li><span>Can players explain why they were caught?</span></li>
+    <li><span>Do repeated runs remain tense rather than solved?</span></li>
+    <li><span>Do players feel given adequate recovery opportunities?</span></li>
+</ul>
+<h2 id="_Toc228264482"><span>Intended Player Experience</span></h2>
+<p><span>The intended player experience is created through uncertainty and the vulnerability of the player. Players should feel continuously aware that the creature could appear at any moment, creating a sense of unease throughout the exploration of the tunnels.</span></p>
+<p><span>Rather than using scripted scares, this experience uses the player to create moments of tension with their situational awareness. As the player begins to read the environmental cues, like audio signals and how the creature behaves, player survival should rely on the player&apos;s decision-making rather than the player&apos;s reflexes in the moment.</span></p>
+<p><span>The moments of escape from the creature are designed to provide small moments of relief, allowing the players to recover before being hunted again. These moments will help players feel like they are progressing while keeping the player from feeling fully safe. All while the creature remains unpredictable enough to keep tension but maintains the fairness needed.</span></p>
+<p><span>&nbsp;</span></p>
+<h1 id="_Toc228264483"><span>Art Direction</span></h1>
+<h2 id="_Toc228264484"><span>Asset Creation</span></h2>
+<ul>
+    <li><span>Assets are constructed to convey shapes in as few faces as possible.</span></li>
+    <li><span>Textures are constructed by finding royalty-free textures (stone, concrete, gravel, etc.) and edited to amplify contrast/colour curve, then compressed to a relevant size.</span></li>
+    <li><span>Some textures feature a gradient from dark to light. This is to guide players&apos; eyes upwards naturally when appropriate.</span></li>
+    <li><span>Textures are then edited with a jumble brush/manually so that they tile uniformly.</span></li>
+    <li><span>Any imprints (tile seams, brick mortar, etc.) are solid colours (of the base texture) and then cut out into shapes, lowered opacity, and overlaid onto the texture.</span></li>
+    <li><span>Most relevant assets in our game are modular, meaning they piece together.</span></li>
+    <li><span>This allows us to build maps easier and make changes quickly and efficiently.</span></li>
+</ul>
+<p><span>&nbsp;</span></p>
+<h2 id="_Toc228264485"><span>Dithering Shader</span></h2>
+<ul>
+    <li><span>Dithering is used both to complement the art style and to obfuscate long-distance details (therefore mitigating LOS issues).</span></li>
+    <li><span>We also limit the screen space to a palette, which is then further refined to force specific colours to render as others (for example, red and yellows merge into orange, blues merge into green, etc.). This allows us to have more control over the usage of colours in our game.</span></li>
+</ul>
+<h2 id="_Toc228264486"><span>Lighting / Colours</span></h2>
+<p><span>We use three main light colours to telegraph information to the player</span></p>
+<ul>
+    <li><span>Green is used to signify the puzzles, their hints, or markers to guide you to either of the aforementioned. The palette is attuned so that greens and purples are merged into greens, which makes their use less ambiguous to players.</span></li>
+    <li><span>Orange is used in the tunnels and platforms due to its warmth. I wanted to create a claustrophobic feeling, so we used orange because lights closer to red are on the edges of the light spectrum, appearing darker.</span></li>
+    <li><span>Blue is used in the service tunnel areas due to its coldness and the fact metallic textures often have a blue tint to them. We also wanted these colours to feel visually distinct, so all blue lights are kept low and are much less vibrant than the others.</span></li>
+    <li><span>Lights are usually placed at the beginning and end of hallways, as well as at any intersections within the tunnels. This is to allow players to easily see all available paths but makes the travel to said paths dark, which keeps tension up. There are many parts of the map where this isn&rsquo;t always true, though.</span></li>
+</ul>
+<p><span>&nbsp;</span></p>
+<h1 id="_Toc228264487"><strong><span>Audio Direction</span></strong></h1>
+<h2 id="_Toc228264488"><span>Key Terms:</span></h2>
+<ul>
+    <li><strong><span>Unity ScriptableObject &ndash;&nbsp;</span></strong><span>Data container, used to store reusable audio configurations outside of code. Each sound is its own <em>AudioDataSO</em>.</span></li>
+    <li><strong><span>Audio Pooling &ndash;</span></strong><span>&nbsp;Pre-creates a set number of audio source components to reuse during gameplay instead of creating/destroying them at runtime.</span></li>
+    <li><strong><span>Event-Driven Audio Alerts &ndash;&nbsp;</span></strong><span>Sound playback can trigger enemy hearing. (configurable &ndash; range, priority, and whether an enemy can be triggered by it)</span></li>
+</ul>
+<p><strong><span>Approach:</span></strong></p>
+<p><span>The audio system uses a data-driven approach built around Unity <em>ScriptableObjects</em> and a centralised <em>AudioManager</em> singleton to keep audio implementation modular and scalable. Each sound is stored in its own <em>AudioDataSO</em>, containing all relevant playback settings such as multiple clips, volume, pitch variation, looping, randomisation, etc., as well as gameplay behaviour settings such as whether it alerts the enemy or not, etc.</span></p>
+<p><span>This separates audio data from gameplay code, allowing sounds to be easily implemented and edited in the inspector. The <em>AudioManager</em> singleton acts as a single access point for all sound playback, using a dictionary lookup system for fast retrieval and an audio pooling system, which improves performance and reduces memory overhead.</span></p>
+<p><span>Additional features such as positional audio, enemy tracking, and enemy alert events make the system more immersive and scalable.</span></p>
+<p><span>&nbsp;</span></p>
+<h1 id="_Toc228264489"><span>UI &amp; Presentation</span></h1>
+<p><span>The game uses a minimal user interface to allow for stronger immersion and maintains tension. Information is shown to the player through the environment, audio cues and player observations rather than a traditional HUD system.</span></p>
+<h2 id="_Toc228264490"><span>Player Information</span></h2>
+<p><span>Players are given only the necessary information needed to interact with the world. A small crosshair will appear only when the player is looking at an object which they can interact with; this tells the player that an interaction is possible without being on screen all the time. This approach allows for the player to be more enveloped in the scene and must rely on environmental awareness.</span></p>
+<p><span>The lack of a HUD allows us to add to the tension and uncertainty of the environment. The player must use audio cues and creature behaviour to navigate the dangers and the environment, leading to the game being a more immersive and tension-building horror game.</span></p>
+<h2 id="_Toc228264491"><span>Menus</span></h2>
+<p><span>The game also uses a minimal amount of interface screens. These are a start menu, a pause menu and two end menus depending on win or lose. The menus are simple and have been made to keep with the tone of the game without breaking immersion.</span></p>
+<h1 id="_Toc228264492"><span>Technical Scope</span></h1>
+<h2 id="_Toc228264493"><span>Project Scope</span></h2>
+<ul>
+    <li><span>Single playable level or small connected environment.</span></li>
+    <li><span>One unkillable monster enemy with core AI behaviours.</span></li>
+    <li><span>Focus on evasion, hiding, and environmental interaction mechanics.</span></li>
+    <li><span>Prototype-length experience rather than a full commercial game.</span></li>
+    <li><span>Basic art, lighting, audio, and animation are used to support gameplay readability and atmosphere.</span></li>
+</ul>
+<h2 id="_Toc228264494"><span>In Scope</span></h2>
+<ul>
+    <li><span>Monster AI states (patrol, investigate, chase, search, and reset).</span></li>
+    <li><span>Player movement and hiding systems.</span></li>
+    <li><span>Environmental interaction mechanics (doors, objectives, distractions).</span></li>
+    <li><span>Level design supporting escape routes and line-of-sight breaks.</span></li>
+    <li><span>Core audio feedback for tension and monster proximity.</span></li>
+    <li><span>Minimal UI consisting of menus and a contextual interaction crosshair.</span></li>
+</ul>
+<h2 id="_Toc228264495"><span>Out of Scope</span></h2>
+<ul>
+    <li><span>Combat systems or player weapons.</span></li>
+    <li><span>Multiple enemy types.</span></li>
+    <li><span>Large open-world environments.</span></li>
+    <li><span>Multiplayer functionality.</span></li>
+    <li><span>Extensive narrative systems or cinematic storytelling.</span></li>
+    <li><span>Advanced progression systems or character upgrades.</span></li>
+</ul>
+<h2 id="_Toc228264496"><span>Technical Notes</span></h2>
+<ul>
+    <li><span>Engine: Unity.</span></li>
+    <li><span>Modular level construction to allow rapid iteration and testing.</span></li>
+    <li><span>AI behaviour implemented at a functional prototype level rather than production complexity.</span></li>
+    <li><span>Systems designed for playtesting, iteration, and balance evaluation within a 12-week development timeframe.</span></li>
+</ul>
+<h1 id="_Toc228264497"><span>Testing &amp; iteration plan</span></h1>
+<h2 id="_Toc228264498"><span>Map Reworks</span></h2>
+<p><span>The starting area has been redesigned to be much more linear.</span></p>
+<p><span>The intention was to have the first puzzle (keypad puzzle) be linear so that players have a formula to get used to. It was also intended to be the first puzzle a player encounters.</span></p>
+<p><span>This was not how playtesters were tackling it, often ignoring the green lights and backside of one-way doors in favour of exploring to the other side of the map, often getting lost and unsure what to do.</span></p>
+<p><span>To combat this, one of the tunnels has been completely removed, and the grate allowing access to the keypad has also been removed. The thought process is that this will funnel players to seeing the keypad first, incentivising them to explore the local area for a code.</span></p>
+<h2 id="_Toc228264499"><span>Landmarks</span></h2>
+<p><span>Areas of the map feature more unique elements</span></p>
+<p><span>Playtesters often found themselves lost due to the modular map assets. Despite layouts being repetitive, players were more focused on evading the monster or figuring out what to do.</span></p>
+<p><span>To negate this, we&rsquo;ve begun to add props around the map, such as wooden boxes, as well as utilising the decal system to add different types of graffiti around the map. We&rsquo;ve found the most success with words, often being more memorable and forming patterns in a player&rsquo;s head after seeing it more than once.</span></p>
+<p><span>Moreover, we also added a map (albeit a very simplified version of it). Players find themselves using this early to get a mental image of the layout of the map.</span></p>
+<h2 id="_Toc228264500"><span>Dithering</span></h2>
+<p><span>Much playtesting found the dithering effect applied to the screen made it hard to make out important details.</span></p>
+<p><span>While this was an intentional effect, it often frustrated playtesters when they had to be closer to things than they thought before they could make it out. Playtesters also complained that it often made recognising parts of the map they&rsquo;ve been to before difficult.</span></p>
+<p><span>To remedy this, we kept the Bayer matrix overlay the same but increased the resolution from 320x160 to 480x240 (the Bayer matrix scales with the screen, making it &ldquo;appear smaller&quot;). This reported well with playtesters, although the number of tests run with it is minimal, so we&rsquo;ll need more feedback to finetune it further.</span></p>
+<h2 id="_Toc228264501"><span>AI Iteration</span></h2>
+<p><span>After playtesting, there were several pain points noted regarding the enemy AI and behaviour; these were iterated on to reduce issues of frustration and unpredictability.</span></p>
+<p><strong><span>Roam State</span></strong></p>
+<ul>
+    <li><span>Tweaked values for speed, bias towards player (aggression)</span></li>
+    <li><span>Added intentional heading away from the player after a close encounter while the player is hiding &ndash; reduces player frustration from being forced to wait for too long</span></li>
+    <li><span>Changed from binary &lsquo;towards player&rsquo; or &lsquo;away from player&rsquo; to a weighted pseudo-random direction which is more directly biased towards the player when the player is further away &ndash; encourages natural but intentional engagement, reducing players&apos; feeling like the NPC just always knows exactly where they are</span></li>
+    <li><span>Added player velocity estimation and biases the NPC&rsquo;s path towards where the player is heading, rather than where they were &ndash; increasing number of encounters</span></li>
+</ul>
+<p><strong><span>Hunt State</span></strong></p>
+<ul>
+    <li><span>Added a distinct audio cue as to when the enemy has begun tracking the player</span></li>
+    <li><span>Prevent the enemy from &lsquo;seeing through walls&rsquo; to allow players to better understand how the AI knows where they are</span></li>
+    <li><span>Increased detection distance and the time it takes for the NPC to lose the player</span></li>
+    <li><span>Fixed bugs where the AI wouldn&rsquo;t pathfind correctly by offsetting the last known player position so that it is at the player&rsquo;s feet</span></li>
+</ul>
+<p><strong><span>Investigate State</span></strong></p>
+<ul>
+    <li><span>When the NPC reaches the audio source, it now checks the crouching/hiding state of the player to determine whether the enemy can see them or not.</span></li>
+    <li><span>No longer constantly checks for the player when travelling to the audio source</span></li>
+</ul>
+</section>
 </body>
