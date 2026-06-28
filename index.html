@@ -1,106 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kian Wootton | Portfolio</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="Styles/Home.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kian Wootton | Game Production Portfolio</title>
+  <meta name="description" content="Portfolio website for Kian Wootton, an Immersive Technology student at the University of Winchester seeking game production placements." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles.css">
 </head>
-
 <body>
+  <header class="hero">
+    <div class="container">
+      <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Kian Wootton homepage">
+          <div class="brand-mark">KW</div>
+          <div>
+            <p class="brand-title">Kian Wootton</p>
+            <p class="brand-subtitle">Game Production Portfolio</p>
+          </div>
+        </a>
 
-<header class="site-header">
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#production">Production</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
 
-    <div class="Header_image">
-        <img class="logo" src="Images/Logo/HollowWolf_Logo.png" alt="Hollow Wolf">
-        <span class="Header_name">Kian Wootton</span>
+      <div id="top" class="hero-grid">
+        <div class="fade-in">
+          <div class="eyebrow">✦ Seeking game production placements</div>
+          <h1>Aspiring game producer with experience in client projects, task management and team coordination.</h1>
+          <p class="hero-copy">
+            I’m a second-year Immersive Technology student at the University of Winchester with an interest in game production and project coordination. Through university and client projects, I have developed experience in planning, documentation, 
+            communication and collaborative development. I'm particularly interested in how teams organise, communicate and deliver projects, while continuing to build my technical understanding of game development through Unity and C#.
+          </p>
+          <div class="button-row">
+            <a class="button button-primary" href="#projects">View projects →</a>
+            <a class="button button-secondary" href="Kian-Wootton-CV.pdf">Download CV</a>
+            <a class="button button-secondary" href="https://www.linkedin.com/in/kian-wootton-b7330b1b3/" target="_blank">
+   LinkedIn
+</a>
+          </div>
+        </div>
+
+        <div class="hero-side fade-in delay-1">
+          <div class="profile-photo">
+            <img src="Photos/Index_Photos/Kian_Portfolio_Picture.jpg" alt="Kian Wootton portrait">
+          </div>
+
+          <aside class="snapshot-card" aria-label="Portfolio snapshot">
+          <p class="small-label">Portfolio snapshot</p>
+          <div class="snapshot-list">
+            <div class="snapshot-item">
+              <div class="snapshot-icon">▣</div>
+              <div>
+                <span>Target role</span>
+                <p>Game production placement</p>
+              </div>
+            </div>
+            <div class="snapshot-item">
+              <div class="snapshot-icon">⌖</div>
+              <div>
+                <span>Based at</span>
+                <p>University of Winchester</p>
+              </div>
+            </div>
+            <div class="snapshot-item">
+              <div class="snapshot-icon">◎</div>
+              <div>
+                <span>Team experience</span>
+                <p>Three University projects completed across a range of team sizes.</p>
+              </div>
+            </div>
+            <div class="snapshot-item">
+              <div class="snapshot-icon">◈</div>
+              <div>
+                <span>Core tools</span>
+                <p>Unity, C#, Ora, Miro, MS Office, GitHub</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+        </div>
+      </div>
+  </header>
+
+  <main>
+    <section id="projects">
+      <div class="container">
+        <div class="section-intro">
+          <p class="section-kicker">Production Case Studies</p>
+          <h2>These case studies showcase projects completed throughout my degree, highlighting 
+            both my development work and growing interest in game production.</h2>
+          <p> Each project will explain my role, what the project was and my involvement in the project.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <p class="project-type">Client led Horror Project</p>
+            <h3>Quebec Underground</h3>
+            <p class="project-role">Production Coordinator and Development contributor</p>
+            <p class="project-summary">Collaborated within a multidisciplinary team to deliver a client-focused horror game project. 
+              Participated in client meetings, maintained project documentation, coordinated with the University's Audio Department, 
+              and supported planning and delivery using Miro and Ora. Worked across technical and creative disciplines to ensure 
+              project requirements were understood and delivered.</p>
+            <div class="tag-row">
+              <span class="tag">Stakeholder Communication</span>
+              <span class="tag">Multidisciplinary Development</span>
+              <span class="tag">Project Planning</span>
+              <span class="tag">Task Tracking</span>
+            </div>
+
+            <a href="Quebec_Underground.html" class="case-study-btn">
+              View Case Study
+            </a>
+          </article>
+
+          <article class="project-card">
+            
+            <p class="project-type">Production Case Study</p>
+            <h3>Lessons from Two Client Projects</h3>
+            <p class="project-role">Production and Workflow Analysis</p>
+            <p class="project-summary">A review of how production practices evolved across two client projects, covering planning, 
+              backlog management, communication, scope control, and iterative development. Reflects on challenges encountered and 
+              the processes used to improve team organisation and project delivery.</p>
+            <div class="tag-row">
+              <span class="tag">Agile Workflows</span>
+              <span class="tag">Task Management</span>
+              <span class="tag">Communication</span>
+              <span class="tag">Production Growth</span>
+            </div>
+
+            <a href="Final_Year.html" class="case-study-btn">
+             View Case Study
+            </a>
+          </article>
+
+          <article class="project-card">
+            <p class="project-type">VR Game Prototype</p>
+            <h3>Time Heist</h3>
+            <p class="project-role">Production and Gameplay contributor</p>
+            <p class="project-summary">A six-week university VR game project where players collect artefacts within a collapsing pyramid before 
+              time runs out. Contributed gameplay features and participated in weekly reviews, project planning discussions, and 
+              collaborative development throughout the project lifecycle.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Weekly Reviews</span>
+              <span class="tag">Team Planning</span>
+              <span class="tag">Unity XR</span>
+              <span class="tag">Gameplay Systems</span>
+            </div>
+
+            <a href="Time_Heist.html" class="case-study-btn">
+              View Case Study
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section id="production" class="production-section">
+      <div class="container production-grid">
+        <div class="production-text">
+          <p class="section-kicker">Production focus</p>
+          <h2>What I bring to a team.</h2>
+          <p> 
+            I enjoy helping teams stay organised, focused and moving towards shared goals. 
+            Through university projects, I have developed experience in planning work, coordinating with teammates, tracking progress and supporting development through clear communication. 
+            My technical understanding of Unity and C# also helps me collaborate effectively with developers and understand production challenges from multiple perspectives.
+          </p>
+        </div>
+
+        <div class="production-cards">
+          <article class="production-card">
+            <h3>Planning</h3>
+            <p>Breaking project goals into clear tasks, milestones and weekly priorities using tools such as Ora and Miro.</p>
+          </article>
+          <article class="production-card">
+            <h3>Communication</h3>
+            <p>Supporting collaboration through clear discussions, documentation and regular reviews to ensure everyone understands priorities and project goals.</p>
+          </article>
+          <article class="production-card">
+            <h3>Technical awareness</h3>
+            <p>Experience with Unity and C# allows me to communicate effectively with developers, understand technical limitations and identify risks earlier in production.</p>
+          </article>
+          <article class="production-card">
+            <h3>Reflection</h3>
+            <p> Reflecting on completed work, gathering feedback and identifying opportunities to improve team workflows, development processes and future projects.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  <section id="leadership" class="production-section">
+  <div class="container production-grid">
+
+    <div class="production-text">
+      <p class="section-kicker">Leadership & Representation</p>
+
+      <h2>Supporting communication and collaboration.</h2>
+
+      <p>
+        Alongside my studies, I serve as a Student Academic Representative and
+        STAR Chair at the University of Winchester. In this role, I represent
+        student feedback, facilitate discussions between students and academic
+        staff, and help communicate ideas and concerns across multiple year
+        groups.
+      </p>
+
+      <p>
+        The position has strengthened my confidence in communication,
+        organisation, and stakeholder management, while giving me valuable
+        experience coordinating conversations between people with different
+        priorities and perspectives.
+      </p>
     </div>
 
-    <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#skills">Skills</a>
-        <a href="index.html#contact">Contact</a>
-    </nav>
+    <div class="production-cards">
 
-</header>
+      <article class="production-card">
+        <h3>Leadership</h3>
+        <p>
+          Supporting productive conversations, encouraging engagement, and
+          helping ensure different viewpoints are heard and understood.
+        </p>
+      </article>
 
-<section class="hero">
-<div class="hero-bg" id="parallax"></div>
-<div class="hero-content">
-<h1>Kian <span>Wootton</span></h1>
-<p>Producer and developer inspired by dark fantasy games shaped by folklore and mystery </p>
-</div>
+      <article class="production-card">
+        <h3>Organisation</h3>
+        <p>
+          Preparing for meetings, gathering feedback from students, and helping
+          track actions and outcomes throughout the academic year.
+        </p>
+      </article>
+
+      <article class="production-card">
+        <h3>Stakeholder Management</h3>
+        <p>
+          Working with students, lecturers, and university staff to communicate
+          priorities, identify issues, and contribute to positive improvements
+          within the course.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
 </section>
 
-<section id="projects">
-<h2 class="section-title">Projects</h2>
-<p class="section-desc">Selected work and ongoing development.</p>
+    <section id="skills">
+      <div class="container">
+        <p class="section-kicker">Skills</p>
+        <h2>Tools and strengths</h2>
+        <div class="skills-wrap">
+          <span class="skill">Unity</span>
+          <span class="skill">C#</span>
+          <span class="skill">Ora task management</span>
+          <span class="skill">Miro</span>
+          <span class="skill">MS Office</span>
+          <span class="skill">Game production</span>
+          <span class="skill">Documentation</span>
+          <span class="skill">Team communication</span>
+          <span class="skill">Prototyping</span>
+          <span class="skill">Playtesting</span>
+        </div>
+      </div>
+    </section>
 
-<div class="grid">
-<a href="Time_Heist.html" class="card"><img src="Images/Time_Hiest/logo.png"><div class="card-content"><small>UNITY VR GAME</small><h3>Time Heist</h3><p>Sample Text</p></div></a>
-<a href="Quebec_UnderGround.html" class="card"><img src="Images/quebec_underground_logo.png"><div class="card-content"><small>FAST PACE HORROR</small><h3>Quebec Underground</h3><p>High intensity horror experience currently in development for a University Project.</p></div></a>
-<a href="client_project_report.html" class="card"><img src="Images/Time_Hiest/logo.png"><div class="card-content"><small>REPORT</small><h3>Client Project</h3><p>Report on term 1 and 2 client projects.</p></div></a>
-</div>
-</section>
+    <section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-card">
 
-<section id="about">
-<div class="about">
-<div>
-<h2 class="section-title">About</h2>
-<p>I am a solo game developer and producer focused on building immersive dark fantasy worlds. Projects prioritize atmosphere, emotional tone, and meaningful player interaction.</p>
-<br>
-<p>Development combines technical experimentation with artistic direction, exploring folklore, wilderness themes, and mystery.</p>
-</div>
+      <div>
+        <p class="small-contact">
+          Available for placements and junior production opportunities
+        </p>
 
-<div>
-<div class="panel"><strong>Philosophy</strong><p>Atmosphere first. Gameplay with purpose.</p></div>
-<div class="panel"><strong>Workflow</strong><p>Solo development with iterative design.</p></div>
-<div class="panel"><strong>Focus</strong><p>Indie games with identity and mood.</p></div>
-</div>
-</div>
-</section>
+        <h2>Let's talk about game production.</h2>
 
-<section id="skills">
-<h2 class="section-title">Skills</h2>
-<div class="skills">
-<span>Unity</span>
-<span>C#</span>
-<span>Game Design</span>
-<span>UI Systems</span>
-<span>Gameplay Programming</span>
-<span>Worldbuilding</span>
-<span>Level Design</span>
-<span>Prototyping</span>
-</div>
-</section>
+        <p>
+          I'm currently seeking placement opportunities and production-focused
+          roles within the games industry. If you're looking for someone with
+          experience in team collaboration, project planning and Unity
+          development, I'd love to hear from you.
+        </p>
+      </div>
 
-<section id="contact">
-<h2 class="section-title">Contact</h2>
-<p class="section-desc">Follow development or get in touch.</p>
+      <div class="contact-actions">
+        <a class="button button-primary"
+           href="mailto:kian200351@outlook.com">
+          Email Me
+        </a>
 
-<div class="social-bar">
-  <a href="https://github.com/YOURUSERNAME"><i class="fa-brands fa-github"></i></a>
-  <a href="https://www.linkedin.com/in/kian-wootton-b7330b1b3/"><i class="fa-brands fa-linkedin"></i></a>
-  <a href="https://www.youtube.com/@HollowWolf-26"><i class="fa-brands fa-youtube"></i></a>
-  <a href="mailto:kian200351@outlook.com"><i class="fa-solid fa-envelope"></i></a>
-</div>
-</section>
+        <a class="button button-secondary"
+           href="https://www.linkedin.com/in/kian-wootton-b7330b1b3/"
+           target="_blank">
+          LinkedIn
+        </a>
 
-<footer>
-© 2026 Hollow Wolf — Solo Indie Developer and producer Portfolio
-</footer>
+        <a class="button button-secondary"
+           href="Kian-Wootton-CV.pdf"
+           download>
+          Download CV
+        </a>
+      </div>
+    </section>
+  </main>
 
-<script>
-const heroBg=document.getElementById('parallax');
-window.addEventListener('scroll',()=>{
- const offset=window.scrollY*0.25;
- heroBg.style.transform=`translateY(${offset}px) scale(1.15)`;
-});
-</script>
-
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Kian Wootton.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
